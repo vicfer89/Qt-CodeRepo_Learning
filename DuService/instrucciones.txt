@@ -1,0 +1,9 @@
+Ejecutar "cmd.exe" como administrador
+
+
+Crea un servicio nuevo: sc create "MiServicio" binpath="C:\miservicio.exe" start=auto
+
+
+Elimina un servicio: sc delete "MiServicio"
+
+Ejecuta como programa normal: miservicio.exe -e

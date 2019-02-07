@@ -1,0 +1,12 @@
+
+*** Elevated Command Line***
+Start->run "cmd" (right click on cmd and run as admin)
+
+To create a service enter the following:
+sc create "MyService" binpath= "C:\Downloads\MyService.exe" start= auto
+
+To delete a service enter the following:
+sc delete "MyService"
+
+** TIP - to run as a normal executable
+C:\Downloads\MyService.exe -e

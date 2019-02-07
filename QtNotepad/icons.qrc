@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/Icons">
+        <file>Icons/icono-guardar-png-3.png</file>
+        <file>Icons/open.png</file>
+    </qresource>
+</RCC>
