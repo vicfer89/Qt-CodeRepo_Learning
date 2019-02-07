@@ -1,20 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Widget</class>
- <widget class="QWidget" name="Widget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="Widget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>541</width>
+    <height>42</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Widget</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Proceso:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="Proceso_lineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Ejecutar_pushButton">
+       <property name="text">
+        <string>Ejecutar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Quitar_pushButton">
+       <property name="text">
+        <string>Quitar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
