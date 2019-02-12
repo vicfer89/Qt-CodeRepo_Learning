@@ -3,6 +3,13 @@
 #include <QUdpSocket>
 #include <QAbstractSocket>
 
+typedef struct _Datagramas
+{
+    QByteArray data;
+    QHostAddress hostAddr;
+    quint16 port;
+}Datagramas;
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
@@ -10,19 +17,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
     mSocket = new QUdpSocket(this);
 
-    /*connect(mSocket, &QUdpSocket::readyRead, [&]()
-    {
-       if(mSocket->hasPendingDatagrams()){
-        QByteArray datagrama;        
-        datagrama.resize(mSocket->pendingDatagramSize());
-        mSocket->readDatagram(datagrama.data(), datagrama.size());
-        QString *String = new QString(datagrama.data());
-        ui->datos_listWidget->addItem(*String);
-        ui->size_spinBox->setValue(String->length());
-       }
-    });*/
     connect(mSocket, SIGNAL(readyRead()), this, SLOT(packet_Received_Signal()));
-
 }
 
 Widget::~Widget()
@@ -37,13 +32,14 @@ void Widget::on_conectar_pushButton_clicked()
 
 void Widget::packet_Received_Signal()
 {
-    if(mSocket->hasPendingDatagrams()){
-     QByteArray datagrama;
-     datagrama.resize(mSocket->pendingDatagramSize());
-     mSocket->readDatagram(datagrama.data(), datagrama.size());
-     QString *String = new QString(datagrama.data());
+    if(mSocket->hasPendingDatagrams())
+    {
+     Datagramas datagrama;
+     datagrama.data.resize(mSocket->pendingDatagramSize());
+     mSocket->readDatagram(datagrama.data.data(), datagrama.data.size(),&datagrama.hostAddr,&datagrama.port);
+     QString *String = new QString(datagrama.data.data());
      ui->datos_listWidget->addItem(*String);
-     ui->size_spinBox->setValue(datagrama.size());
+     ui->size_spinBox->setValue(datagrama.data.size());
     }
 }
 
