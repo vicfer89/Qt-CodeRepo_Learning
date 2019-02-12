@@ -13,13 +13,12 @@ Widget::Widget(QWidget *parent) :
     connect(mSocket, &QUdpSocket::readyRead, [&]()
     {
        if(mSocket->hasPendingDatagrams()){
-        QByteArray datagrama;
-        int Bytes = mSocket->pendingDatagramSize();
-        ui->size_spinBox->setValue(Bytes);
+        QByteArray datagrama;        
         datagrama.resize(mSocket->pendingDatagramSize());
         mSocket->readDatagram(datagrama.data(), datagrama.size());
         QString *String = new QString(datagrama.data());
         ui->datos_listWidget->addItem(*String);
+        ui->size_spinBox->setValue(String->length());
        }
     });
 
