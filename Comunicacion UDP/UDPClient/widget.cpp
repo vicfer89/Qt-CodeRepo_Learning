@@ -10,7 +10,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
     mSocket = new QUdpSocket(this);
 
-    connect(mSocket, &QUdpSocket::readyRead, [&]()
+    /*connect(mSocket, &QUdpSocket::readyRead, [&]()
     {
        if(mSocket->hasPendingDatagrams()){
         QByteArray datagrama;        
@@ -20,7 +20,8 @@ Widget::Widget(QWidget *parent) :
         ui->datos_listWidget->addItem(*String);
         ui->size_spinBox->setValue(String->length());
        }
-    });
+    });*/
+    connect(mSocket, SIGNAL(readyRead()), this, SLOT(packet_Received_Signal()));
 
 }
 
@@ -33,3 +34,16 @@ void Widget::on_conectar_pushButton_clicked()
 {
     mSocket->bind(QHostAddress(ui->ip_lineEdit->text()),ui->puerto_spinBox->value());
 }
+
+void Widget::packet_Received_Signal()
+{
+    if(mSocket->hasPendingDatagrams()){
+     QByteArray datagrama;
+     datagrama.resize(mSocket->pendingDatagramSize());
+     mSocket->readDatagram(datagrama.data(), datagrama.size());
+     QString *String = new QString(datagrama.data());
+     ui->datos_listWidget->addItem(*String);
+     ui->size_spinBox->setValue(datagrama.size());
+    }
+}
+
