@@ -14,9 +14,12 @@ Widget::Widget(QWidget *parent) :
     {
        if(mSocket->hasPendingDatagrams()){
         QByteArray datagrama;
+        int Bytes = mSocket->pendingDatagramSize();
+        ui->size_spinBox->setValue(Bytes);
         datagrama.resize(mSocket->pendingDatagramSize());
         mSocket->readDatagram(datagrama.data(), datagrama.size());
-        ui->datos_listWidget->addItem(QString(datagrama));
+        QString *String = new QString(datagrama.data());
+        ui->datos_listWidget->addItem(*String);
        }
     });
 

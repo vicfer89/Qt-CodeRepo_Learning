@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>308</height>
+    <width>416</width>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,6 +55,24 @@
    </item>
    <item>
     <widget class="QListWidget" name="datos_listWidget"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Data Length:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="size_spinBox">
+       <property name="maximum">
+        <number>1024</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
