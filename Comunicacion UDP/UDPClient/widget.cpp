@@ -8,7 +8,7 @@ typedef struct _Datagramas
     QByteArray data;
     QHostAddress hostAddr;
     quint16 port;
-}Datagramas;
+} Datagramas ;
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -27,7 +27,7 @@ Widget::~Widget()
 
 void Widget::on_conectar_pushButton_clicked()
 {
-    mSocket->bind(QHostAddress(ui->ip_lineEdit->text()),ui->puerto_spinBox->value());
+    mSocket->bind(QHostAddress(ui->ip_lineEdit->text()),static_cast<quint16>(ui->puerto_spinBox->value()));
 }
 
 void Widget::packet_Received_Signal()
@@ -35,7 +35,7 @@ void Widget::packet_Received_Signal()
     if(mSocket->hasPendingDatagrams())
     {
      Datagramas datagrama;
-     datagrama.data.resize(mSocket->pendingDatagramSize());
+     datagrama.data.resize(static_cast<qint16>(mSocket->pendingDatagramSize()));
      mSocket->readDatagram(datagrama.data.data(), datagrama.data.size(),&datagrama.hostAddr,&datagrama.port);
      QString *String = new QString(datagrama.data.data());
      ui->datos_listWidget->addItem(*String);
