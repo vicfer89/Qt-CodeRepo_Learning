@@ -27,7 +27,7 @@ Widget::~Widget()
 
 void Widget::on_conectar_pushButton_clicked()
 {
-    mSocket->bind(QHostAddress(ui->ip_lineEdit->text()),static_cast<quint16>(ui->puerto_spinBox->value()));
+    mSocket->bind(QHostAddress::Any,static_cast<quint16>(ui->puerto_spinBox->value()));
 }
 
 void Widget::packet_Received_Signal()
@@ -43,3 +43,8 @@ void Widget::packet_Received_Signal()
     }
 }
 
+
+void Widget::on_desconectar_pushButton_clicked()
+{
+    mSocket->close();
+}

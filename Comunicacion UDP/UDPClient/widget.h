@@ -21,6 +21,8 @@ private slots:
     void on_conectar_pushButton_clicked();
     void packet_Received_Signal();
 
+    void on_desconectar_pushButton_clicked();
+
 signals:
 
 
